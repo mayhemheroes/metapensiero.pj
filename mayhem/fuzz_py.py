@@ -12,7 +12,7 @@ def TestOneInput(data):
     fdp = fuzz_helpers.EnhancedFuzzedDataProvider(data)
     try:
         transform_string(fdp.ConsumeRemainingString())
-    except (SyntaxError, ValueError):
+    except (SyntaxError, ValueError, ZeroDivisionError):
         return -1
 def main():
     atheris.Setup(sys.argv, TestOneInput)
