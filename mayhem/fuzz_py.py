@@ -14,10 +14,10 @@ def TestOneInput(data):
     fdp = fuzz_helpers.EnhancedFuzzedDataProvider(data)
     try:
         transform_string(fdp.ConsumeRemainingString())
-    except SyntaxError:
+    except (SyntaxError, TransformationError):
         return -1
-    except (ValueError, ZeroDivisionError, TransformationError) as e:
-        if random.random() > 0.90 and "null bytes" not in str(e):
+    except (ValueError, ZeroDivisionError) as e:
+        if random.random() > 0.50 and "null bytes" not in str(e):
             raise e
         return -1
 def main():
