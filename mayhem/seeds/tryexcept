@@ -1,0 +1,4 @@
+try:
+    z = 1 / 0
+except Exception as e:
+    z = 0

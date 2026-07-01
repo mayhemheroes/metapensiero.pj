@@ -1,0 +1,14 @@
+# Mayhem target: metapensiero.pj (javascripthon) Python->ES6 JavaScript transpiler.
+# The cmd binary is the compiled ELF launcher that drives mayhem/fuzz_py.py; Atheris instruments
+# the metapensiero.pj library so the run records coverage (edges) over the parse / AST-transform /
+# code-generation pipeline.
+project: metapensiero.pj
+target: fuzz-py
+
+cmds:
+  - cmd: /mayhem/pj_fuzzer
+    libfuzzer: true
+
+# Seed corpus of representative Python snippets.
+testsuite:
+  - file:///mayhem/mayhem/seeds
